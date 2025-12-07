@@ -1,0 +1,32 @@
+# Главное меню
+from aiogram.fsm.state import StatesGroup, State
+from aiogram_dialog import Dialog, Window
+from aiogram_dialog.widgets.input import MessageInput
+from aiogram_dialog.widgets.kbd import Row, Button, Cancel, Back, Column, Multiselect
+from aiogram_dialog.widgets.text import Const, Format
+
+from app.bot.getters.getters_menu import profile_info
+from app.bot.handlers_dialogs.handlers_menu import add_food, go_profile, set_profile
+from app.bot.handlers_dialogs.handlers_profile import cancel_to_main_profile
+from app.bot.states_dialogs.states_menu import MainMenu
+
+main_menu = Dialog(
+    Window(
+        Const('🏠 Главное меню\n\nАI-трекер калорий всегда на страже качества твоего питания. Чем могу помочь?'),
+        Row(
+            Button(Const('📸 Добавить прием пищи'), id='add_food', on_click=add_food),
+            Button(Const('👤 Мой профиль'), id='my_profile', on_click=go_profile),
+        ),
+        state=MainMenu.menu,
+    ),
+    Window(
+        Format('{profile_info}'),
+        Row(
+        Button(Const('Заполнить профиль'), id='profile_set', on_click=set_profile),
+        # Button(Const('Главное меню'), id='mm_from_profile', on_click=go_profile),
+        Back(Const('Главное меню')),
+        ),
+        getter=profile_info,
+        state=MainMenu.profile,
+    ),
+)

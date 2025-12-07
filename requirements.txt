@@ -1,0 +1,6 @@
+psycopg-pool~=3.2.6
+aiogram~=3.22.0
+psycopg~=3.2.10
+aiogram-dialog==2.4.0
+redis~=5.0.0
+environs~=14.5.0

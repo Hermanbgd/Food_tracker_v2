@@ -5,7 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e9500db-b432-4f00-a6df-c42bf113933f" name="Changes" comment="Сделал структуру проекта, первичный/базовый вариант, добавил .env .env.example .gitignore">
+      <change afterPath="$PROJECT_DIR$/app/bot/dialogs/dialog_menu.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/bot/dialogs/dialog_profile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/bot/getters/getters_menu.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/bot/getters/getters_profile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/bot/handlers_dialogs/handlers_menu.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/bot/handlers_dialogs/handlers_profile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/bot/states_dialogs/states_menu.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/bot/states_dialogs/states_profile.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bot/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/bot/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bot/bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/bot/bot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bot/enums/roles.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/bot/enums/roles.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bot/handlers/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/bot/handlers/users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bot/middlewares/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/bot/middlewares/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/infrastructure/database/connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/infrastructure/database/connection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/infrastructure/database/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/infrastructure/database/db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/create_tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/create_tables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,11 +66,15 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.db.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+    "last_directory_selection": "C:/Users/germa/PycharmProjects/Food_tracker_v2/app/bot/states_dialogs",
+    "last_opened_file_path": "C:/Users/germa/PycharmProjects/Food_tracker_v2/app/bot",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "project.scopes"
   },
   "keyToStringList": {
     "ChangesTree.GroupingKeys": [
@@ -58,6 +83,43 @@
     ]
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\germa\PycharmProjects\Food_tracker_v2\app\bot" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\germa\PycharmProjects\Food_tracker_v2\app\bot" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="db" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Food_tracker_v2" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app/infrastructure/database" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/infrastructure/database/db.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.db" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -89,7 +151,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764068936147</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Сделал структуру проекта, первичный/базовый вариант, добавил .env .env.example .gitignore">
+      <option name="closed" value="true" />
+      <created>1764073318053</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1764073318053</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
