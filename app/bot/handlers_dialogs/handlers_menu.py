@@ -9,6 +9,9 @@ from app.bot.states_dialogs.states_profile import ProfileSetSG
 async def add_food(callback:CallbackQuery, button: Button, dialog_manager: DialogManager):
     await callback.answer()
 
+async def view_food(callback: CallbackQuery, button:Button, dialog_manager: DialogManager):
+    await callback.answer()
+
 
 async def go_profile(callback: CallbackQuery, button: Button, dialog_manager: DialogManager):
     await dialog_manager.switch_to(state=MainMenu.profile)

@@ -70,6 +70,26 @@ async def main():
                         );
                         """
                     )
+                    # Таблица для хранения суточных норм пользователей после подсчета от ии
+                    await cursor.execute(
+                        """
+                        CREATE TABLE IF NOT EXISTS users_nutrition_limits (
+                            user_id BIGINT PRIMARY KEY REFERENCES users(user_id) ON DELETE CASCADE,
+                            calories INT NOT NULL,
+                            protein_grams INT  NOT NULL,
+                            fat_grams INT  NOT NULL,
+                            carbs_grams INT  NOT NULL,
+                            fiber_grams INT NOT NULL,
+                            omega3_mg INT,
+                            potassium_mg INT,
+                            magnesium_mg INT,
+                            sodium_mg INT,
+                            calculated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+                            updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+                        );
+                        """
+                    )
+
                     # таблица для разборов ошибок
                     # await cursor.execute(
                     #     """

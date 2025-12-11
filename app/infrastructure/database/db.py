@@ -223,7 +223,7 @@ async def add_user_profile(conn: AsyncConnection,
                 """
                 INSERT INTO users_profiles (
                     user_id, gender, age, height, weight, goal, activity, diet, updated_at
-                ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, NOW())
+                ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, NOW())
                 ON CONFLICT (user_id) 
                 DO UPDATE SET
                     gender = EXCLUDED.gender,
@@ -262,4 +262,39 @@ async def get_user_profile(
     logger.info("Row is %s", row)
     return row if row else None
 
-
+async def add_user_nutrition_limit(conn: AsyncConnection,
+                           user_id: int,
+                           calories: int,
+                           protein_grams: int,
+                           fat_grams: int,
+                           carbs_grams: int,
+                           fiber_grams: int,
+                           omega3_mg: int,
+                           potassium_mg: int,
+                           magnesium_mg: int,
+                           sodium_mg: int) -> None:
+    async with conn.transaction():
+        async with conn.cursor() as cursor:
+            # Добавляем суточный лимит
+            await cursor.execute(
+                """
+                INSERT INTO users_nutrition_limits (
+                    user_id, calories, protein_grams, fat_grams, carbs_grams,
+                    fiber_grams, omega3_mg, potassium_mg, magnesium_mg, sodium_mg
+                ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                ON CONFLICT (user_id) DO UPDATE SET
+                    calories      = EXCLUDED.calories,
+                    protein_grams = EXCLUDED.protein_grams,
+                    fat_grams     = EXCLUDED.fat_grams,
+                    carbs_grams   = EXCLUDED.carbs_grams,
+                    fiber_grams   = EXCLUDED.fiber_grams,
+                    omega3_mg     = EXCLUDED.omega3_mg,
+                    potassium_mg  = EXCLUDED.potassium_mg,
+                    magnesium_mg  = EXCLUDED.magnesium_mg,
+                    sodium_mg     = EXCLUDED.sodium_mg,
+                    calculated_at = NOW(),
+                    updated_at    = NOW();
+            """,
+                (user_id, calories, protein_grams, fat_grams, carbs_grams,
+                 fiber_grams, omega3_mg, potassium_mg, magnesium_mg, sodium_mg)
+            )
