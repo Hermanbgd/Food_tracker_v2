@@ -70,13 +70,10 @@ async def get_day_diet(
     # Правильный формат сообщений для Chat Completions API
     messages: List[Dict[str, str]] = [
         {
-            "role": "system",
+            "role": "user",
             "content": "Ты — профессиональный спортивный диетолог и нутрициолог. "
                        "Отвечай строго по формату ниже, без лишних слов и символов."
-        },
-        {
-            "role": "user",
-            "content": f"Пол: {gender}\n"
+                       f"Пол: {gender}\n"
                        f"Возраст: {age} лет\n"
                        f"Рост: {height} см\n"
                        f"Вес: {weight} кг\n"
@@ -102,8 +99,7 @@ async def get_day_diet(
         "model": "newapplication-61123",
         "messages": messages,
         "stream": False,
-        "temperature": 0.3,        # добавь для стабильности ответа
-        "max_tokens": 400
+        "temperature": 0.3     # добавь для стабильности ответа
     }
 
     timeout = aiohttp.ClientTimeout(total=30)
@@ -125,20 +121,3 @@ async def get_day_diet(
     except Exception as e:
         print(f"Неожиданная ошибка: {e}")
         return "Внутренняя ошибка сервера"
-
-
-# Правильный запуск асинхронной функции
-async def main():
-    result = await get_day_diet(
-        gender="Мужской",
-        age=28,
-        height=178,
-        weight=76,
-        goal="набор мышечной массы",
-        activity="высокая",
-        diet=["безлактозная"]
-    )
-    print(result)
-
-if __name__ == "__main__":
-    asyncio.run(main())

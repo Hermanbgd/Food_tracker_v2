@@ -5,7 +5,7 @@ from aiogram_dialog.widgets.input import MessageInput
 from aiogram_dialog.widgets.kbd import Row, Button, Cancel, Back, Column, Multiselect
 from aiogram_dialog.widgets.text import Const, Format
 
-from app.bot.getters.getters_menu import profile_info
+from app.bot.getters.getters_menu import diet_info
 from app.bot.handlers_dialogs.handlers_menu import add_food, go_profile, set_profile, view_food
 from app.bot.handlers_dialogs.handlers_profile import cancel_to_main_profile
 from app.bot.states_dialogs.states_menu import MainMenu
@@ -20,13 +20,13 @@ main_menu = Dialog(
         state=MainMenu.menu,
     ),
     Window(
-        Format('{profile_info}'),
+        Format('{diet_info}'),
         Row(
         Button(Const('Заполнить профиль'), id='profile_set', on_click=set_profile),
             Button(Const('🥗 Приемы пищи'), id='add_food', on_click=view_food),
             Back(Const('Главное меню')),
         ),
-        getter=profile_info,
+        getter=diet_info,
         state=MainMenu.profile,
     ),
 )

@@ -89,25 +89,6 @@ async def main():
                         );
                         """
                     )
-
-                    # таблица для разборов ошибок
-                    # await cursor.execute(
-                    #     """
-                    #     CREATE TABLE IF NOT EXISTS error_explanations(
-                    #     user_id BIGINT NOT NULL,
-                    #     message_id BIGINT NOT NULL,
-                    #     original_text TEXT NOT NULL,
-                    #     explanation_text TEXT NOT NULL,
-                    #     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-                    #     PRIMARY KEY (user_id, message_id),
-                    #     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
-                    #     );
-                    #     CREATE INDEX IF NOT EXISTS idx_error_explanations_user_message
-                    #     ON error_explanations (user_id, message_id);
-                    #     CREATE INDEX IF NOT EXISTS idx_error_explanations_user_time
-                    #     ON error_explanations (user_id, created_at DESC);
-                    #     """
-                    # )
                 logger.info("Tables 'users', 'users_profiles' were successfully created")
     except Error as db_error:
         logger.exception("Database-specific error: %s", db_error)

@@ -298,3 +298,29 @@ async def add_user_nutrition_limit(conn: AsyncConnection,
                 (user_id, calories, protein_grams, fat_grams, carbs_grams,
                  fiber_grams, omega3_mg, potassium_mg, magnesium_mg, sodium_mg)
             )
+
+async def get_user_nutrition_limit(
+    conn: AsyncConnection,
+    *,
+    user_id: int,
+) -> tuple[Any, ...] | None:
+    async with conn.cursor() as cursor:
+        await cursor.execute(
+            """
+                SELECT 
+                    calories,
+                    protein_grams,
+                    fat_grams,
+                    carbs_grams,
+                    fiber_grams,
+                    omega3_mg,
+                    potassium_mg,
+                    magnesium_mg,
+                    sodium_mg,
+                    FROM users_nutrition_limits WHERE user_id = %s;
+            """,
+            (user_id,),
+        )
+        row = await cursor.fetchone()
+    logger.info("Row is %s", row)
+    return row if row else None
