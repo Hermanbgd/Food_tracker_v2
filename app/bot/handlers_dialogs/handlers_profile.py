@@ -113,11 +113,10 @@ async def button_confirm_profile_set(
 
         await waiting_msg.delete()
 
-        await callback.message.answer(
+        await callback.alert(
             "Профиль сохранён!\n\n"
-            "Я рассчитал(а) твои персональные суточные нормы. "
-            "Посмотреть их можно в разделе «Мой рацион»",
-            # reply_markup=some_keyboard_if_needed
+            "Я рассчитал твои персональные суточные нормы. "
+            # "Посмотреть их можно в разделе «Мой рацион»",
         )
     except Exception as e:
         # Если что-то пошло не так — тоже удаляем "считаю..." и ругаемся

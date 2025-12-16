@@ -316,7 +316,7 @@ async def get_user_nutrition_limit(
                     omega3_mg,
                     potassium_mg,
                     magnesium_mg,
-                    sodium_mg,
+                    sodium_mg
                     FROM users_nutrition_limits WHERE user_id = %s;
             """,
             (user_id,),
