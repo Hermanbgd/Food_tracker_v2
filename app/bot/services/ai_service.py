@@ -121,3 +121,54 @@ async def get_day_diet(
     except Exception as e:
         print(f"Неожиданная ошибка: {e}")
         return "Внутренняя ошибка сервера"
+
+async def get_food_description(
+    meal_description: str
+) -> str:
+    # Правильный формат сообщений для Chat Completions API
+    messages: List[Dict[str, str]] = [
+        {
+            "role": "user",
+            "content": "Ты — профессиональный спортивный диетолог и нутрициолог."
+                        "Отвечай строго по формату ниже, без лишних слов и символов."
+                        f"Анализируй следующий прием пищи: {meal_description}"
+                        "ВЫВЕДИ ТОЛЬКО НУТРИЕНТЫ. НИКАКИХ ПОЯСНЕНИЙ И ПРИВЕТСТВИЙ."
+                        "Формат:"
+                        "calories: ___ ккал"
+                        "protein_grams: ___ г"
+                        "fat_grams: ___ г"
+                        "carbs_grams: ___ г"
+                        "fiber_grams: ___ г"
+                        "omega3_mg: ___ мг"
+                        "potassium_mg: ___ мг"
+                        "magnesium_mg: ___ мг"
+                        "sodium_mg: ___ мг"
+        }
+    ]
+
+    payload = {
+        "model": "newapplication-61123",
+        "messages": messages,
+        "stream": False,
+        "temperature": 0.3     # добавь для стабильности ответа
+    }
+
+    timeout = aiohttp.ClientTimeout(total=30)
+
+    try:
+        async with aiohttp.ClientSession(headers=HEADERS, timeout=timeout) as session:
+            async with session.post(URL, json=payload) as resp:
+                if resp.status == 200:
+                    data = await resp.json()
+                    content = data["choices"][0]["message"]["content"].strip()
+                    nutrition_dict = _parse_diet_text(content)
+                    return nutrition_dict
+                else:
+                    error = await resp.text()
+                    print(f"API Error {resp.status}: {error}")
+                    return f"Ошибка API: {resp.status}"
+    except asyncio.TimeoutError:
+        return "Таймаут запроса к Chipp.ai"
+    except Exception as e:
+        print(f"Неожиданная ошибка: {e}")
+        return "Внутренняя ошибка сервера"

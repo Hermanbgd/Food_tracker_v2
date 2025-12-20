@@ -4,14 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e9500db-b432-4f00-a6df-c42bf113933f" name="Changes" comment="изменил геттер profile_info из menu на diet_info, добавил в db get_user_nutrition_limit, не проверял как работает!">
-      <change afterPath="$PROJECT_DIR$/app/bot/dialogs/dialog_add_food.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/bot/states_dialogs/states_add_food.py" afterDir="false" />
+    <list default="true" id="0e9500db-b432-4f00-a6df-c42bf113933f" name="Changes" comment="добавил отображение рациона после заполннения анкеты профиля, переход из главного меню в состояние добавление приема пищи, ожидает голосовое, либо текст. есть хэндлер handle_food_input для обработки сообщение от пользователя, не доделан!!!!">
+      <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bot/dialogs/dialog_add_food.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/bot/dialogs/dialog_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/bot/dialogs/dialog_menu.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/bot/handlers_dialogs/handlers_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/bot/handlers_dialogs/handlers_menu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/bot/handlers_dialogs/handlers_profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/bot/handlers_dialogs/handlers_profile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bot/services/ai_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/bot/services/ai_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bot/services/t_t_v_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/bot/services/other_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bot/services/v_t_t_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/bot/services/v_t_t_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/bot/states_dialogs/states_add_food.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/infrastructure/database/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/infrastructure/database/db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/create_tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/create_tables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +66,7 @@
     &quot;last_directory_selection&quot;: &quot;C:/Users/germa/PycharmProjects/Food_tracker_v2/app/bot/states_dialogs&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/germa/PycharmProjects/Food_tracker_v2/app/bot&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.scopes&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;ChangesTree.GroupingKeys&quot;: [
@@ -160,13 +167,22 @@
       <option name="project" value="LOCAL" />
       <updated>1765808504134</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="добавил отображение рациона после заполннения анкеты профиля, переход из главного меню в состояние добавление приема пищи, ожидает голосовое, либо текст. есть хэндлер handle_food_input для обработки сообщение от пользователя, не доделан!!!!">
+      <option name="closed" value="true" />
+      <created>1765889284313</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1765889284313</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Сделал структуру проекта, первичный/базовый вариант, добавил .env .env.example .gitignore" />
     <MESSAGE value="не доделал, есть чуть меню, отправляется запрос к ии составляет рацион, сохраняет в бд, не выводит в тг, пока все" />
     <MESSAGE value="изменил геттер profile_info из menu на diet_info, добавил в db get_user_nutrition_limit, не проверял как работает!" />
-    <option name="LAST_COMMIT_MESSAGE" value="изменил геттер profile_info из menu на diet_info, добавил в db get_user_nutrition_limit, не проверял как работает!" />
+    <MESSAGE value="добавил отображение рациона после заполннения анкеты профиля, переход из главного меню в состояние добавление приема пищи, ожидает голосовое, либо текст. есть хэндлер handle_food_input для обработки сообщение от пользователя, не доделан!!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавил отображение рациона после заполннения анкеты профиля, переход из главного меню в состояние добавление приема пищи, ожидает голосовое, либо текст. есть хэндлер handle_food_input для обработки сообщение от пользователя, не доделан!!!!" />
   </component>
 </project>

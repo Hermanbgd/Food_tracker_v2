@@ -89,7 +89,40 @@ async def main():
                         );
                         """
                     )
-                logger.info("Tables 'users', 'users_profiles' were successfully created")
+                    # Таблица для хранения приемов пищи
+                    await cursor.execute(
+                        """
+                        CREATE TABLE IF NOT EXISTS food_intake (
+                            id SERIAL PRIMARY KEY,          
+                            user_id BIGINT NOT NULL REFERENCES users(user_id) ON DELETE CASCADE,
+                            food TEXT NOT NULL,              
+                            calculated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),  
+                            updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+                        );
+                        """
+                    )
+                    # Таблица для хранения разборов приемов пищи
+                    await cursor.execute(
+                        """
+                        CREATE TABLE IF NOT EXISTS food_analysis (
+                            id SERIAL PRIMARY KEY,          
+                            user_id BIGINT NOT NULL REFERENCES users(user_id) ON DELETE CASCADE,
+                            calories INT NOT NULL,
+                            protein_grams INT  NOT NULL,
+                            fat_grams INT  NOT NULL,
+                            carbs_grams INT  NOT NULL,
+                            fiber_grams INT NOT NULL,
+                            omega3_mg INT,
+                            potassium_mg INT,
+                            magnesium_mg INT,
+                            sodium_mg INT,           
+                            calculated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),  
+                            updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW() 
+                        );
+                        """
+                    )
+                logger.info("Tables 'users', 'users_profiles', 'users_nutrition_limits',"
+                            " 'food_intake', 'food_analysis' were successfully created")
     except Error as db_error:
         logger.exception("Database-specific error: %s", db_error)
     except Exception as e:

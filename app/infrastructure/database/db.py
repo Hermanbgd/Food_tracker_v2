@@ -324,3 +324,92 @@ async def get_user_nutrition_limit(
         row = await cursor.fetchone()
     logger.info("Row is %s", row)
     return row if row else None
+
+async def add_food_db(conn: AsyncConnection,
+                           user_id: int,
+                           food: str) -> None:
+    async with conn.transaction():
+        async with conn.cursor() as cursor:
+            # Добавляем прием пищи
+            await cursor.execute(
+                """
+                INSERT INTO food_intake (user_id, food) VALUES (%s, %s);
+            """,
+                (user_id, food)
+            )
+
+async def get_food(
+    conn: AsyncConnection,
+    *,
+    user_id: int,
+    n:int=1
+) -> tuple[Any, ...] | None:
+    async with conn.cursor() as cursor:
+        await cursor.execute(
+            """
+            SELECT food
+            FROM food_intake
+            WHERE user_id = %s
+            ORDER BY calculated_at DESC
+            LIMIT %s;
+            """,
+            (user_id, n)
+        )
+        row = await cursor.fetchone()
+    logger.info("Row is %s", row)
+    return row if row else None
+
+async def add_food_analysis(conn: AsyncConnection,
+                            user_id: int,
+                            calories: int,
+                            protein_grams: int,
+                            fat_grams: int,
+                            carbs_grams: int,
+                            fiber_grams: int,
+                            omega3_mg: int,
+                            potassium_mg: int,
+                            magnesium_mg: int,
+                            sodium_mg: int) -> None:
+    async with conn.transaction():
+        async with conn.cursor() as cursor:
+            # Добавляем разбор прием пищи
+            await cursor.execute(
+                """
+                INSERT INTO food_analysis (
+                user_id, 
+                calories,
+                protein_grams,
+                fat_grams,
+                carbs_grams,
+                fiber_grams,
+                omega3_mg,
+                potassium_mg,
+                magnesium_mg,
+                sodium_mg
+                ) 
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
+            """,
+                (user_id, calories, protein_grams, fat_grams, carbs_grams, fiber_grams,
+                 omega3_mg, potassium_mg, magnesium_mg, sodium_mg)
+            )
+
+async def get_food_analysis(
+    conn: AsyncConnection,
+    *,
+    user_id: int,
+    n:int=1
+) -> tuple[Any, ...] | None:
+    async with conn.cursor() as cursor:
+        await cursor.execute(
+            """
+            SELECT food_analys
+            FROM food_analysis
+            WHERE user_id = %s
+            ORDER BY calculated_at DESC
+            LIMIT %s;
+            """,
+            (user_id, n)
+        )
+        row = await cursor.fetchone()
+    logger.info("Row is %s", row)
+    return row if row else None
